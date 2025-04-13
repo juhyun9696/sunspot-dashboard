@@ -94,7 +94,7 @@ st.markdown("이 대시보드는 태양흑점 데이터를 다양한 시각화 �
 
 try:
     # 데이터 로드
-    df = load_data('data/sunspots.csv')
+    df = load_data('sunspots.csv')
 
     # 필터링된 데이터 - 전체 데이터 사용
     filtered_df = df
