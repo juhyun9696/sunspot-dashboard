@@ -90,14 +90,24 @@ def plot_advanced_sunspot_visualizations(df, sunactivity_col='SUNACTIVITY'):
 # 3. Streamlit 앱 실행
 # -------------------------------
 st.title('🌞 태양흑점 데이터 분석 대시보드 🌞')
-st.markdown("`data/sunspots.csv` 파일을 기반으로 다양한 시각화를 제공합니다.")
+st.markdown("이 대시보드는 태양흑점 데이터를 다양한 시각화 방법으로 보여줍니다.")
 
 try:
-    df = load_data()
-    st.success("✅ 데이터 로딩 완료!")
-    fig = plot_advanced_sunspot_visualizations(df)
-    st.pyplot(fig)
+    # 데이터 로드
+    df = load_data('data/sunspots.csv')
+
+    # 필터링된 데이터 - 전체 데이터 사용
+    filtered_df = df
+
+    # 시각화
+    if not filtered_df.empty:
+        st.subheader('태양흑점 데이터 종합 시각화')
+        fig = plot_advanced_sunspot_visualizations(filtered_df)
+        st.pyplot(fig)
+    else:
+        st.warning("데이터가 없습니다.")
+
 except Exception as e:
-    st.error(f"❌ 오류 발생: {e}")
-    st.info("`data/sunspots.csv` 파일이 존재하는지 확인해주세요. 폴더 구조도 확인!")
+    st.error(f"오류가 발생했습니다: {e}")
+    st.info("데이터 파일의 구조를 확인해주세요. 'data/sunspots.csv' 파일이 존재하고 'YEAR'와 'SUNACTIVITY' 컬럼이 있어야 합니다.")
 
