@@ -20,7 +20,7 @@ from scipy.stats import gaussian_kde
 # -------------------------------
 @st.cache_data
 def load_data():
-    df = pd.read_csv("data/sunspots.csv")
+    df = pd.read_csv("sunspots.csv")
     df['YEAR_INT'] = df['YEAR'].astype(int)
     df['DATE'] = pd.to_datetime(df['YEAR_INT'].astype(str), format='%Y')
     df.set_index('DATE', inplace=True)
